@@ -1,0 +1,68 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+		maven {
+			name = "sonatype"
+			url = "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+	}
+	dependencies {
+		classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+	}
+}
+
+repositories {
+	flatDir {
+		dirs 'libs'
+	}
+}
+
+apply plugin: 'forge'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+version = "0.9.3.133-impact"
+group= "lp"
+archivesBaseName = "logisticspipes"
+def buildby = 'impact'
+
+minecraft {
+	version = "1.7.10-10.13.4.1614-1.7.10"
+	runDir = "run"
+}
+
+dependencies {
+	compile name: archivesBaseName + '-' + '0.9.3.132-dev'
+	compile name: 'CodeChickenCore-1.7.10-1.0.7.47-universal'
+	compile name: 'CodeChickenLib-1.7.10-1.1.3.138-universal'
+	compile name: 'NotEnoughItems-1.7.10-2.0.0-GTNH-universal'
+	compile name: 'EnderStorage-1.7.10-1.4.7.36-dev'
+	compile name: 'buildcraft-7.1.16-dev'
+    compile name: 'appliedenergistics2-rv2-beta-14'
+    compile name: 'ComputerCraft1.75'
+    compile name: 'forestry_1.7.10-4.2.11.59'
+    compile name: 'industrialcraft-2-2.2.827-experimental'
+    compile name: 'OpenComputers-MC1.7.10-1.5.22.46-universal'
+    compile name: 'Thaumcraft-1.7.10-4.2.3.5'
+
+   
+
+}
+
+jar {
+	manifest {
+        attributes(	'FMLCorePlugin': 'logisticspipes.asm.LogisticsPipesCoreLoader', 
+					'FMLCorePluginContainsFMLMod': 'true',
+					'Implementation-Vendor': 'RS485',
+					'Implementation-Title': 'LogisticsPipes',
+					'Implementation-Version': version,
+					'Built-By': buildby )
+    }
+
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	from zipTree('libs/' + archivesBaseName + '-' + 'logisticspipes-0.9.3.132' + '.jar')
+}
