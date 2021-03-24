@@ -28,7 +28,6 @@ apply plugin: 'forge'
 version = "0.9.3.133-impact"
 group= "lp"
 archivesBaseName = "logisticspipes"
-def buildby = 'impact'
 
 minecraft {
 	version = "1.7.10-10.13.4.1614-1.7.10"
@@ -48,21 +47,14 @@ dependencies {
     compile name: 'industrialcraft-2-2.2.827-experimental'
     compile name: 'OpenComputers-MC1.7.10-1.5.22.46-universal'
     compile name: 'Thaumcraft-1.7.10-4.2.3.5'
-
-   
-
 }
 
 jar {
 	manifest {
-        attributes(	'FMLCorePlugin': 'logisticspipes.asm.LogisticsPipesCoreLoader', 
-					'FMLCorePluginContainsFMLMod': 'true',
-					'Implementation-Vendor': 'RS485',
-					'Implementation-Title': 'LogisticsPipes',
-					'Implementation-Version': version,
-					'Built-By': buildby )
-    }
-
+        attributes	'FMLCorePlugin': 'logisticspipes.asm.LogisticsPipesCoreLoader'
+		attributes		'FMLCorePluginContainsFMLMod': 'true'
+	}
+   
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-	from zipTree('libs/' + archivesBaseName + '-' + 'logisticspipes-0.9.3.132' + '.jar')
+	from zipTree('libs/' + archivesBaseName + '-' + '0.9.3.132' + '.jar')
 }
